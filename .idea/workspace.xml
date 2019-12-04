@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6291e220-659c-49e3-a744-ec8930a4de94" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jenkins-shared-lib.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jobs/scripts/Utilities.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/test/Utilities.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/Utilities.groovy" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +52,19 @@
       <option name="presentableId" value="Default" />
       <updated>1575450932725</updated>
     </task>
+    <task id="LOCAL-00001" summary="gitignore; some fixes">
+      <created>1575455994677</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1575455994677</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="gitignore; some fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="gitignore; some fixes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="873" y="359" key="#Project_Structure" timestamp="1575455806595">
@@ -66,6 +75,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="985" y="389" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/3840.121.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1575455768929" />
+    <state x="937" y="295" key="CommitChangelistDialog2" timestamp="1575455993921">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="937" y="295" key="CommitChangelistDialog2/3840.121.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1575455993921" />
     <state x="988" y="441" key="FileChooserDialogImpl" timestamp="1575455524506">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -74,6 +87,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="782" y="343" key="SettingsEditor/3840.121.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1575455597701" />
+    <state x="873" y="433" key="Vcs.Push.Dialog.v2" timestamp="1575456035130">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="873" y="433" key="Vcs.Push.Dialog.v2/3840.121.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1575456035130" />
     <state x="977" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1575450937858">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
