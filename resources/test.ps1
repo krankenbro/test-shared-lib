@@ -1,0 +1,1 @@
+Write-Output "test library's resource loading"
