@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6291e220-659c-49e3-a744-ec8930a4de94" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jenkins-shared-lib.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jobs/scripts/Utilities.groovy" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1UVo4RDythSzmMrZ7PFc2FOTDaW" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.language" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6291e220-659c-49e3-a744-ec8930a4de94" name="Default Changelist" comment="" />
+      <created>1575450932725</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1575450932725</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="873" y="359" key="#Project_Structure" timestamp="1575455806595">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="873" y="359" key="#Project_Structure/3840.121.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1575455806595" />
+    <state x="985" y="389" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1575455768929">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="985" y="389" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/3840.121.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1575455768929" />
+    <state x="988" y="441" key="FileChooserDialogImpl" timestamp="1575455524506">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="988" y="441" key="FileChooserDialogImpl/3840.121.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1575455524506" />
+    <state x="782" y="343" key="SettingsEditor" timestamp="1575455597701">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="782" y="343" key="SettingsEditor/3840.121.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1575455597701" />
+    <state x="977" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1575450937858">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="977" y="524" key="com.intellij.ide.util.TipDialog/3840.121.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1575450937858" />
+  </component>
+</project>

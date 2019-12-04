@@ -1,4 +1,4 @@
-package jobs.scripts
+package com.test
 
 class Utilities {
     private static String DefaultSharedLibName = 'virto-shared-library'
