@@ -1,5 +1,3 @@
-package com.test
-
 import groovy.json.JsonSlurperClassic
 
 class Settings{
