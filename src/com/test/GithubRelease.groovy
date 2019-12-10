@@ -1,4 +1,4 @@
-package jobs.scripts
+package com.test
 
 class GithubRelease{
     long id
