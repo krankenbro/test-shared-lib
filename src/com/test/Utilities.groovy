@@ -139,9 +139,6 @@ class Utilities {
 
     def static notifyBuildStatus(context, webHook, message='', status = '')
     {
-        def warnings = context.env.WARNINGS ? "WARNINGS:<br/>${context.env.WARNINGS}" : ''
-        if(message != '')
-            message = "${message}<br/>${warnings}"
         def color 
         switch(status) {
             case 'STARTED':
@@ -195,7 +192,7 @@ class Utilities {
         def instance = Jenkins.getInstance()
         def globalNodeProperties = instance.getGlobalNodeProperties()
         def envVarsNodePropertyList = globalNodeProperties.getAll(hudson.slaves.EnvironmentVariablesNodeProperty.class)
-
+        new HashMap<>().
         def newEnvVarsNodeProperty = null
         def envVars = null
 
@@ -438,17 +435,16 @@ class Utilities {
     }
 
 
-    def static getE2ETests(context){
+    def static getE2ETests(context, repoUrl, branchName){
         //context.git credentialsId: 'github', url: 'https://github.com/VirtoCommerce/vc-platform-qg.git'
-        context.git credentialsId: 'github', url: 'https://github.com/VirtoCommerce/vc-com-qg.git', branch: 'dev'
+        context.git credentialsId: 'github', url: repoUrl, branch: branchName
     }
 
-    def static runE2E(context){
-        def e2eDir = Utilities.getE2EDir(context)
+    def static runE2E(context, e2eDir, config){
         context.dir(e2eDir){
             context.deleteDir()
             getE2ETests(context)
-            def sfPort = Utilities.getStorefrontPort(context)
+            def sfPort = getStorefrontPort(context)
             def DefaultAdminDockerPrefix = "https://vc-public-test.azurewebsites.net/"
             def autoPilot = "https://api2.autopilothq.com/"
             def allureResultsPath = "${context.env.WORKSPACE}\\allure-results"
@@ -457,7 +453,7 @@ class Utilities {
                 context.deleteDir()
             }
             def allureResultsEsc = allureResultsPath.replace("\\", "\\\\")
-            def jsonConf = "{\\\"output\\\":\\\"${allureResultsEsc}\\\",\\\"helpers\\\":{\\\"REST\\\":{\\\"endpoint\\\":\\\"${autoPilot}\\\"},\\\"WebDriver\\\":{\\\"url\\\":\\\"${DefaultAdminDockerPrefix}\\\"}}}"
+            def jsonConf = config//"{\\\"output\\\":\\\"${allureResultsEsc}\\\",\\\"helpers\\\":{\\\"REST\\\":{\\\"endpoint\\\":\\\"${autoPilot}\\\"},\\\"WebDriver\\\":{\\\"url\\\":\\\"${DefaultAdminDockerPrefix}\\\"}}}"
             context.withEnv(["vcapikey=${context.env.vcapikey_e2e}"]){
                 context.bat "${context.env.NODE_MODULES}\\.bin\\codeceptjs.cmd run -o \"${jsonConf}\""
             }
