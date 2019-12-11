@@ -3,13 +3,13 @@ package com.test
 import groovy.json.JsonSlurperClassic
 
 class Settings implements Serializable{
-    private Object _settings
+    public Object _settings
     private String _branch
     private String _project
     Settings(String json){
         _settings = new JsonSlurperClassic().parseText(json)
     }
-    def getAt(String item){
+    String getAt(String item){
         if(_project == null)
             throw new Exception("Settings error: Project name is not set")
         if(_branch == null)
@@ -24,7 +24,7 @@ class Settings implements Serializable{
     def setBranch(String branch){
         _branch = branch
     }
-    def getProjects(){
+    String[] getProjects(){
         return _settings.keySet() as String[]
     }
     def containsProject(String project){
