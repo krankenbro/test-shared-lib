@@ -192,7 +192,6 @@ class Utilities {
         def instance = Jenkins.getInstance()
         def globalNodeProperties = instance.getGlobalNodeProperties()
         def envVarsNodePropertyList = globalNodeProperties.getAll(hudson.slaves.EnvironmentVariablesNodeProperty.class)
-        new HashMap<>().
         def newEnvVarsNodeProperty = null
         def envVars = null
 
