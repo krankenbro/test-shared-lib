@@ -8,7 +8,7 @@ class Utilities {
     private static Integer DefaultStorefrontPort = 8080
     private static Integer DefaultSqlPort = 1434 
 
-    def static getOrgName(){
+    def static getOrgName(context){
         return DefaultOrgName
     }
     def static getRepoName(context)
