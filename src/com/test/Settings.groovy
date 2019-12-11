@@ -6,8 +6,9 @@ class Settings implements Serializable{
     private Object _settings
     private String _branch
     private String _project
-    Settings(String json){
+    Settings(String json, context){
         _settings = new JsonSlurperClassic().parseText(json)
+        context.echo json
     }
     def getAt(String item){
         if(_project == null)
@@ -16,6 +17,7 @@ class Settings implements Serializable{
             throw new Exception("Settings error: Environment is not set")
         if(!_settings.containsKey(item))
             return ''
+        context
         return _settings[_project][_branch][item]
     }
     def setProject(String project){
