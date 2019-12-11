@@ -3,10 +3,14 @@ package com.test
 class Utilities {
     private static String DefaultSharedLibName = 'virto-shared-library'
     private static String DefaultAdminDockerPrefix = 'http://localhost'
+    private static String DefaultOrgName = 'VirtoCommerce'
     private static Integer DefaultPlatformPort = 8090
     private static Integer DefaultStorefrontPort = 8080
     private static Integer DefaultSqlPort = 1434 
 
+    def static getOrgName(){
+        return DefaultOrgName
+    }
     def static getRepoName(context)
     {
         def tokens = "${context.env.JOB_NAME}".tokenize('/')
