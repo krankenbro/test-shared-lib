@@ -6,19 +6,17 @@ class Settings implements Serializable{
     private Object _settings
     private String _branch
     private String _project
-    Settings(String json, context){
+    Settings(String json){
         _settings = new JsonSlurperClassic().parseText(json)
-        context.echo json
     }
     def getAt(String item){
         if(_project == null)
-            throw new Exception("Settings error: Region is not set")
+            throw new Exception("Settings error: Project name is not set")
         if(_branch == null)
-            throw new Exception("Settings error: Environment is not set")
+            throw new Exception("Settings error: Branch name is not set")
         if(!_settings.containsKey(item))
             return ''
-        context
-        return _settings[_project][_branch][item]
+        return _settings[_project][_branch][item] as String
     }
     def setProject(String project){
         _project = project
@@ -26,10 +24,10 @@ class Settings implements Serializable{
     def setBranch(String branch){
         _branch = branch
     }
-    def getRegions(){
+    def getProjects(){
         return _settings.keySet() as String[]
     }
-    def containsRegion(String project){
+    def containsProject(String project){
         return _settings.containsKey(project)
     }
 }
