@@ -17,7 +17,7 @@ class Settings implements Serializable{
             throw new Exception("Settings error: Project name is not set")
         if(_branch == null)
             throw new Exception("Settings error: Branch name is not set")
-        if(!_settings.containsKey(item)){
+        if(!_settings[_project][_branch].containsKey(item)){
             _context.echo "Settings.getAt: not contains ${item}"
             return ''
         }
