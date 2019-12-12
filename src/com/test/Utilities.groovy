@@ -28,9 +28,17 @@ class Utilities {
         return tokens[1]
     }
 
-    def static runSharedPS(context, scriptName, args = '')
-    {
- 	    context.bat "powershell.exe -File \"${context.env.WORKSPACE}\\..\\workspace@libs\\${DefaultSharedLibName}\\resources\\azure\\${scriptName}\" ${args} -ErrorAction Stop".replaceAll('%', '%%')
+//    def static runSharedPS(context, scriptName, args = '')
+//    {
+// 	    context.bat "powershell.exe -File \"${context.env.WORKSPACE}\\..\\workspace@libs\\${DefaultSharedLibName}\\resources\\azure\\${scriptName}\" ${args} -ErrorAction Stop".replaceAll('%', '%%')
+//    }
+
+    def static runSharedPS(context, scriptName, args = ''){
+        def scriptContent = context.libraryResource(scriptName)
+        def tmpScriptFile = "${context.env.WORKSPACE}@tmp\\scripts\\${scriptName}"
+        context.writeFile file: tmpScriptFile, text: scriptContent
+        context.powershell script: "${tmpScriptFile} ${args}", label: "powershell ${scriptName}"
+        new File(tmpScriptFile).delete()
     }
 
     def static getAssemblyVersion(context, projectFile)
