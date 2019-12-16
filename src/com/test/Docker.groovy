@@ -1,5 +1,3 @@
-package com.test
-
 class Docker {
     def static createDockerImage(context, String dockerImageName, String dockerContextFolder, String dockerSourcePath, String version) {
         def dockerFileFolder = dockerImageName.replaceAll("/", ".")
