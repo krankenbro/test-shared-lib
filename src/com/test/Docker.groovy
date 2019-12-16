@@ -1,5 +1,6 @@
 class Docker {
     def static createDockerImage(context, String dockerImageName, String dockerContextFolder, String dockerSourcePath, String version) {
+        context.echo "createDockerImage"
         def dockerFileFolder = dockerImageName.replaceAll("/", ".")
         def dockerFolder = ""
         if(context.projectType == 'NETCORE2') {
@@ -16,6 +17,6 @@ class Docker {
                 {
                     dockerImage = context.docker.build("${dockerImageName}:${version}".toLowerCase(), "--build-arg SOURCE=\"${dockerSourcePath}\" .")
                 }
-        //return dockerImage
+        return dockerImage
     }
 }
