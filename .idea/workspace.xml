@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6291e220-659c-49e3-a744-ec8930a4de94" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/scripts/azure/DeployTo-Azure.ps1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/scripts/azure/Restart-WebApp.ps1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jenkins-shared-lib.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jenkins-shared-lib.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/test/Utilities.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/Utilities.groovy" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,9 +25,10 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="configurable.group.language" />
   </component>
   <component name="ServiceViewManager">
@@ -59,26 +61,166 @@
       <option name="project" value="LOCAL" />
       <updated>1575455994677</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fixes">
+      <created>1575471365915</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1575471365915</updated>
+    </task>
+    <task id="LOCAL-00003" summary="refactoring">
+      <created>1575963528060</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1575963528060</updated>
+    </task>
+    <task id="LOCAL-00004" summary="package fix">
+      <created>1575965828928</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1575965828928</updated>
+    </task>
+    <task id="LOCAL-00005" summary="package fix">
+      <created>1575985235919</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1575985235919</updated>
+    </task>
+    <task id="LOCAL-00006" summary="package fix">
+      <created>1575985315545</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1575985315545</updated>
+    </task>
+    <task id="LOCAL-00007" summary="package fix">
+      <created>1575989418329</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1575989418329</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Utilities typo">
+      <created>1576052241289</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1576052241289</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Utilities getOrgName">
+      <created>1576061000588</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1576061000588</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Utilities getOrgName fix">
+      <created>1576061453072</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1576061453072</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Settings fix">
+      <created>1576069615520</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1576069615520</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Settings fix">
+      <created>1576073191240</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1576073191240</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Settings fix">
+      <created>1576074808754</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1576074808754</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Settings fix">
+      <created>1576075716691</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1576075716691</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Settings fix">
+      <created>1576076130404</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1576076130404</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Settings fix; runSharedPS refactoring">
+      <created>1576154208338</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1576154208338</updated>
+    </task>
+    <task id="LOCAL-00017" summary="runSharedPS refactoring">
+      <created>1576161274814</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1576161274814</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="gitignore; some fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="gitignore; some fixes" />
+    <MESSAGE value="fixes" />
+    <MESSAGE value="refactoring" />
+    <MESSAGE value="package fix" />
+    <MESSAGE value="Utilities typo" />
+    <MESSAGE value="Utilities getOrgName" />
+    <MESSAGE value="Utilities getOrgName fix" />
+    <MESSAGE value="Settings fix" />
+    <MESSAGE value="Settings fix; runSharedPS refactoring" />
+    <MESSAGE value="runSharedPS refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="runSharedPS refactoring" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="873" y="359" key="#Project_Structure" timestamp="1575455806595">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="4495" y="383" key="#Project_Structure" timestamp="1576490868434">
+      <screen x="3840" y="121" width="1920" height="1020" />
     </state>
     <state x="873" y="359" key="#Project_Structure/3840.121.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1575455806595" />
-    <state x="985" y="389" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1575455768929">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="4495" y="383" key="#Project_Structure/3840.121.1920.1020/0.0.2560.1400@3840.121.1920.1020" timestamp="1576490868434" />
+    <state x="4519" y="374" key="#Restart-WebApp.ps1" timestamp="1576484829185">
+      <screen x="3840" y="121" width="1920" height="1020" />
+    </state>
+    <state x="4519" y="374" key="#Restart-WebApp.ps1/3840.121.1920.1020/0.0.2560.1400@3840.121.1920.1020" timestamp="1576484829185" />
+    <state x="4542" y="443" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1576490929237">
+      <screen x="3840" y="121" width="1920" height="1020" />
+    </state>
+    <state x="4542" y="443" key="#com.intellij.fileTypes.FileTypeChooser/3840.121.1920.1020/0.0.2560.1400@3840.121.1920.1020" timestamp="1576490929237" />
+    <state x="4579" y="404" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1575536923975">
+      <screen x="3840" y="121" width="1920" height="1020" />
     </state>
     <state x="985" y="389" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/3840.121.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1575455768929" />
-    <state x="937" y="295" key="CommitChangelistDialog2" timestamp="1575455993921">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="4579" y="404" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/3840.121.1920.1020/0.0.2560.1400@3840.121.1920.1020" timestamp="1575536923975" />
+    <state x="4509" y="350" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog" timestamp="1576146829968">
+      <screen x="3840" y="121" width="1920" height="1020" />
     </state>
-    <state x="937" y="295" key="CommitChangelistDialog2/3840.121.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1575455993921" />
+    <state x="4509" y="350" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog/3840.121.1920.1020/0.0.2560.1400@3840.121.1920.1020" timestamp="1576146829968" />
+    <state x="4547" y="496" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1576489879316">
+      <screen x="3840" y="121" width="1920" height="1020" />
+    </state>
+    <state x="4547" y="496" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/3840.121.1920.1020/0.0.2560.1400@3840.121.1920.1020" timestamp="1576489879316" />
+    <state x="4543" y="329" key="CommitChangelistDialog2" timestamp="1576161274199">
+      <screen x="3840" y="121" width="1920" height="1020" />
+    </state>
+    <state x="937" y="295" key="CommitChangelistDialog2/3840.121.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1575471365282" />
+    <state x="4543" y="329" key="CommitChangelistDialog2/3840.121.1920.1020/0.0.2560.1400@3840.121.1920.1020" timestamp="1576161274199" />
     <state x="988" y="441" key="FileChooserDialogImpl" timestamp="1575455524506">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -87,13 +229,19 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="782" y="343" key="SettingsEditor/3840.121.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1575455597701" />
-    <state x="873" y="433" key="Vcs.Push.Dialog.v2" timestamp="1575456035130">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="4495" y="436" key="Vcs.Push.Dialog.v2" timestamp="1576161296425">
+      <screen x="3840" y="121" width="1920" height="1020" />
     </state>
-    <state x="873" y="433" key="Vcs.Push.Dialog.v2/3840.121.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1575456035130" />
-    <state x="977" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1575450937858">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="873" y="433" key="Vcs.Push.Dialog.v2/3840.121.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1575471376641" />
+    <state x="4495" y="436" key="Vcs.Push.Dialog.v2/3840.121.1920.1020/0.0.2560.1400@3840.121.1920.1020" timestamp="1576161296425" />
+    <state x="4573" y="503" key="com.intellij.ide.util.TipDialog" timestamp="1576484676127">
+      <screen x="3840" y="121" width="1920" height="1020" />
     </state>
     <state x="977" y="524" key="com.intellij.ide.util.TipDialog/3840.121.1920.1020/0.0.2560.1400@0.0.2560.1400" timestamp="1575450937858" />
+    <state x="4573" y="503" key="com.intellij.ide.util.TipDialog/3840.121.1920.1020/0.0.2560.1400@3840.121.1920.1020" timestamp="1576484676127" />
+    <state x="4463" y="346" key="search.everywhere.popup" timestamp="1576490900776">
+      <screen x="3840" y="121" width="1920" height="1020" />
+    </state>
+    <state x="4463" y="346" key="search.everywhere.popup/3840.121.1920.1020/0.0.2560.1400@3840.121.1920.1020" timestamp="1576490900776" />
   </component>
 </project>
