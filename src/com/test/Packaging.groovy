@@ -1,6 +1,6 @@
 package com.test
 
-class Packaging {
+public class Packaging {
 
     private static String DefaultBranchOrCommitPR = '${sha1}'
     private static String DefaultBranchOrCommitPush = '*/master'
