@@ -139,6 +139,7 @@ class Utilities {
     {
         def tempFolder = getTempFolder(context)
         def websitePath = "${tempFolder}\\_PublishedWebsites\\${websiteDir}"
+        context.echo websitePath
         return websitePath 
     }
 
