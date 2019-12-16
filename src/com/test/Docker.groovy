@@ -1,6 +1,10 @@
-class Docker {
+package com.test
+
+public class Docker {
+    def static hello(context){
+        context.echo "hello from Docker class"
+    }
     def static createDockerImage(context, String dockerImageName, String dockerContextFolder, String dockerSourcePath, String version) {
-        context.echo "createDockerImage"
         def dockerFileFolder = dockerImageName.replaceAll("/", ".")
         def dockerFolder = ""
         if(context.projectType == 'NETCORE2') {
