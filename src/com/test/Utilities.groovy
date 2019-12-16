@@ -137,8 +137,8 @@ class Utilities {
 
     def static getWebPublishFolder(context, String websiteDir)
     {
-        def tempFolder = Utilities.getTempFolder(context)
-        def websitePath = "$tempFolder\\_PublishedWebsites\\${websiteDir}"
+        def tempFolder = getTempFolder(context)
+        def websitePath = "${tempFolder}\\_PublishedWebsites\\${websiteDir}"
         return websitePath 
     }
 
