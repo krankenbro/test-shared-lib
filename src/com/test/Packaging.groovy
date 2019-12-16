@@ -1,6 +1,6 @@
 package com.test
 
-public class Packaging {
+class Packaging implements Serializable{
 
     private static String DefaultBranchOrCommitPR = '${sha1}'
     private static String DefaultBranchOrCommitPush = '*/master'
@@ -26,7 +26,7 @@ public class Packaging {
      * @param version current version of the build
      * @return reference to a docker image created
      */
-    def public static createDockerImage(context, String dockerImageName, String dockerContextFolder, String dockerSourcePath, String version) {
+    def static createDockerImage(context, String dockerImageName, String dockerContextFolder, String dockerSourcePath, String version) {
         def dockerFileFolder = dockerImageName.replaceAll("/", ".")
         def dockerFolder = ""
         if(context.projectType == 'NETCORE2') {
