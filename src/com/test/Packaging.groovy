@@ -26,6 +26,7 @@ class Packaging implements Serializable{
      * @param version current version of the build
      * @return reference to a docker image created
      */
+    @NonCPS
     def static createDockerImage(context, String dockerImageName, String dockerContextFolder, String dockerSourcePath, String version) {
         def dockerFileFolder = dockerImageName.replaceAll("/", ".")
         def dockerFolder = ""
