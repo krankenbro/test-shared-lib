@@ -18,6 +18,6 @@ class Docker {
                 {
                     dockerImage = context.docker.build("${dockerImageName}:${version}".toLowerCase(), "--build-arg SOURCE=\"${dockerSourcePath}\" .")
                 }
-        return dockerImage
+        //return dockerImage
     }
 }
