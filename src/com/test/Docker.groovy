@@ -6,7 +6,6 @@ class Docker {
         def dockerFolder = getDockerFolder(context)
         context.echo "Building docker image \"${dockerImageName}\" using \"${dockerContextFolder}\" as context folder"
         context.bat "xcopy \"..\\workspace@libs\\virto-shared-library\\resources\\${dockerFolder}\\${dockerFileFolder}\\*\" \"${dockerContextFolder}\\\" /Y /E"
-        def dockerImage
         return build(context, dockerContextFolder, "${dockerImageName}:${version}".toLowerCase(), "--build-arg SOURCE=\"${dockerSourcePath}\" .")
     }
 
@@ -23,6 +22,7 @@ class Docker {
         }
         return  dockerFolder
     }
+    @NonCPS
     def static build(context, contextFolder, imageName, args){
         context.dir(contextFolder){
             return context.docker.build(imageName, args)
