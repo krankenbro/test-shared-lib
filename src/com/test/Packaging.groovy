@@ -40,10 +40,10 @@ class Packaging {
         context.echo "Building docker image \"${dockerImageName}\" using \"${dockerContextFolder}\" as context folder"
         context.bat "xcopy \"..\\workspace@libs\\virto-shared-library\\resources\\${dockerFolder}\\${dockerFileFolder}\\*\" \"${dockerContextFolder}\\\" /Y /E"
         def dockerImage
-        //context.dir(dockerContextFolder)
-              //  {
+        context.dir(dockerContextFolder)
+                {
                     dockerImage = context.docker.build("${dockerImageName}:${version}".toLowerCase(), "--build-arg SOURCE=\"${dockerSourcePath}\" .")
-               // }
+                }
         return dockerImage
     }
 
@@ -111,15 +111,15 @@ class Packaging {
         }
     }
 
-    def static stopDockerTestEnvironment(context, String dockerTag)
+    def static stopDockerTestEnvironment(context, dockerTag)
     {
         def composeFolder = Utilities.getComposeFolder(context)
         context.dir(composeFolder)
-                {
-                    context.withEnv(["DOCKER_TAG=${dockerTag}", "COMPOSE_PROJECT_NAME=${context.env.BUILD_TAG}"]) {
-                        context.bat "docker-compose down -v"
-                    }
-                }
+        {
+            context.withEnv(["DOCKER_TAG=${dockerTag}", "COMPOSE_PROJECT_NAME=${context.env.BUILD_TAG}"]) {
+                context.bat "docker-compose down -v"
+            }
+        }
     }
 
     def static createSampleData(context)
