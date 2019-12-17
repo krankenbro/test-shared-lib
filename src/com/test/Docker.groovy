@@ -1,26 +1,31 @@
 package com.test
 
-public class Docker {
-    def static hello(context){
-        context.echo "hello from Docker class"
-    }
+class Docker {
     def static createDockerImage(context, String dockerImageName, String dockerContextFolder, String dockerSourcePath, String version) {
-        def dockerFileFolder = dockerImageName.replaceAll("/", ".")
+        def dockerFileFolder = getDockerFileFolder(context, dockerImageName)
+        def dockerFolder = getDockerFolder(context)
+        context.echo "Building docker image \"${dockerImageName}\" using \"${dockerContextFolder}\" as context folder"
+        context.bat "xcopy \"..\\workspace@libs\\virto-shared-library\\resources\\${dockerFolder}\\${dockerFileFolder}\\*\" \"${dockerContextFolder}\\\" /Y /E"
+        def dockerImage
+        return build(context, dockerContextFolder, "${dockerImageName}:${version}".toLowerCase(), "--build-arg SOURCE=\"${dockerSourcePath}\" .")
+    }
+
+    def static getDockerFileFolder(context, String dockerImageName){
+        return dockerImageName.replaceAll('/', '.')
+    }
+    def static getDockerFolder(context){
         def dockerFolder = ""
         if(context.projectType == 'NETCORE2') {
             dockerFolder = "docker.core\\windowsnano"
-            dockerImageName = dockerImageName // + "-core"
         }
         else {
             dockerFolder = "docker"
         }
-        context.echo "Building docker image \"${dockerImageName}\" using \"${dockerContextFolder}\" as context folder"
-        context.bat "xcopy \"..\\workspace@libs\\virto-shared-library\\resources\\${dockerFolder}\\${dockerFileFolder}\\*\" \"${dockerContextFolder}\\\" /Y /E"
-        def dockerImage
-        context.dir(dockerContextFolder)
-                {
-                    dockerImage = context.docker.build("${dockerImageName}:${version}".toLowerCase(), "--build-arg SOURCE=\"${dockerSourcePath}\" .")
-                }
-        return dockerImage
+        return  dockerFolder
+    }
+    def static build(context, contextFolder, imageName, args){
+        context.dir(contextFolder){
+            return context.docker.build(imageName, args)
+        }
     }
 }
