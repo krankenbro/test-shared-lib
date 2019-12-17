@@ -134,7 +134,7 @@ class Packaging {
         Utilities.runSharedPS(context, 'vc-setup-modules.ps1', "-apiurl \"${Utilities.getPlatformHost(context)}\" -needRestart ${needRestart}")
     }
 
-    def static pushDockerImage(context, dockerImage, String dockerTag)
+    def static pushDockerImage(context, dockerImage, dockerTag)
     {
         context.withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
             context.sh "docker login --password=${context.PASSWORD} --username=${context.USERNAME}"
