@@ -1,7 +1,8 @@
 package com.test
 
 class Docker implements Serializable{
-    def static createDockerImage(context, String dockerImageName, String dockerContextFolder, String dockerSourcePath, String version) {
+    def static createDockerImage(context, String dockerImageName, String dockerContextFolder, String dockerSourcePath, String version)
+    {
         def dockerFileFolder = getDockerFileFolder(context, dockerImageName)
         def dockerFolder = getDockerFolder(context)
         context.echo "Building docker image \"${dockerImageName}\" using \"${dockerContextFolder}\" as context folder"
