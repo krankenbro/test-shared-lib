@@ -24,8 +24,9 @@ class Docker implements Serializable{
     }
 
     def static build(context, contextFolder, imageName, args){
-        //context.dir(contextFolder){
-            return context.docker.build(imageName, args)
-        //}
+        context.dir(contextFolder){
+            //return context.docker.build(imageName, args)
+            return "test"
+        }
     }
 }
