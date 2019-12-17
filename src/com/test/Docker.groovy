@@ -10,7 +10,7 @@ class Docker implements Serializable{
         context.bat "xcopy \"..\\workspace@libs\\virto-shared-library\\resources\\${dockerFolder}\\${dockerFileFolder}\\*\" \"${dockerContextFolder}\\\" /Y /E"
         return build(context, dockerContextFolder, "${dockerImageName}:${version}".toLowerCase(), "--build-arg SOURCE=\"${dockerSourcePath}\" .")
          */
-        return "hello"
+        context.echo "hello"
     }
 
     def static getDockerFileFolder(context, String dockerImageName){
