@@ -27,7 +27,7 @@ class Packaging {
      * @return reference to a docker image created
      */
 
-    def static createDockerImage(context, String dockerImageName, String dockerContextFolder, String dockerSourcePath, String version) {
+    def static createDockerImage(context, dockerImageName, dockerContextFolder, dockerSourcePath, version) {
         def dockerFileFolder = dockerImageName.replaceAll("/", ".")
         def dockerFolder = ""
         if(context.projectType == 'NETCORE2') {
@@ -47,7 +47,7 @@ class Packaging {
         return dockerImage
     }
 
-    def static startDockerTestEnvironment(context, String dockerTag)
+    def static startDockerTestEnvironment(context, dockerTag)
     {
         def composeFolder = Utilities.getComposeFolder(context)
         context.dir(composeFolder)
@@ -90,7 +90,7 @@ class Packaging {
         return true
     }
 
-    def static checkDockerTestEnvironment(context, String containerId)
+    def static checkDockerTestEnvironment(context, containerId)
     {
         //def tag = context.env.BUILD_TAG.replace("-", "").toLowerCase()
         def tag = context.env.BUILD_TAG.toLowerCase()
