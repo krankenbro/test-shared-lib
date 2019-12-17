@@ -1,6 +1,6 @@
 package com.test
 
-class Docker {
+class Docker implements Serializable{
     def static createDockerImage(context, String dockerImageName, String dockerContextFolder, String dockerSourcePath, String version) {
         def dockerFileFolder = getDockerFileFolder(context, dockerImageName)
         def dockerFolder = getDockerFolder(context)
@@ -22,7 +22,7 @@ class Docker {
         }
         return  dockerFolder
     }
-    @NonCPS
+
     def static build(context, contextFolder, imageName, args){
         context.dir(contextFolder){
             return context.docker.build(imageName, args)
