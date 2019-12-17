@@ -3,11 +3,14 @@ package com.test
 class Docker implements Serializable{
     def static createDockerImage(context, String dockerImageName, String dockerContextFolder, String dockerSourcePath, String version)
     {
+        /*
         def dockerFileFolder = getDockerFileFolder(context, dockerImageName)
         def dockerFolder = getDockerFolder(context)
         context.echo "Building docker image \"${dockerImageName}\" using \"${dockerContextFolder}\" as context folder"
         context.bat "xcopy \"..\\workspace@libs\\virto-shared-library\\resources\\${dockerFolder}\\${dockerFileFolder}\\*\" \"${dockerContextFolder}\\\" /Y /E"
         return build(context, dockerContextFolder, "${dockerImageName}:${version}".toLowerCase(), "--build-arg SOURCE=\"${dockerSourcePath}\" .")
+         */
+        return "hello"
     }
 
     def static getDockerFileFolder(context, String dockerImageName){
