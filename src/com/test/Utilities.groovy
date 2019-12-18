@@ -432,17 +432,17 @@ class Utilities {
         return "${tag}_${containerId}_1"
     }
 
-//    @NonCPS
-//    def static cleanNugetFolder(context){
-//        String folderPath = "${context.env.WORKSPACE}\\NuGet"
-//        new File(folderPath).eachFile (FileType.FILES) { file ->
-//            context.echo "found file: ${file.name}"
-//            if (file.name.contains('nupkg')) {
-//                context.echo "remove ${file.name}"
-//                file.delete()
-//            }
-//        }
-//    }
+    @NonCPS
+    def static cleanNugetFolder(context){
+        String folderPath = "${context.env.WORKSPACE}\\NuGet"
+        new File(folderPath).eachFile (FileType.FILES) { file ->
+            context.echo "found file: ${file.name}"
+            if (file.name.contains('nupkg')) {
+                context.echo "remove ${file.name}"
+                file.delete()
+            }
+        }
+    }
 
     def static getE2EDir(context){
         def tmp = Utilities.getTempFolder(context)
