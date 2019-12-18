@@ -388,14 +388,14 @@ class Utilities {
         return swagPaths
     }
 
-//    def static validateSwagger(context, schemaPath) {
-//        Packaging.createSwaggerSchema(context, schemaPath)
-//
-//        def schemaFile = new File(schemaPath)
-//        if(schemaFile.exists() && schemaFile.length()>500){
-//		    context.bat "node.exe ${context.env.NODE_MODULES}\\swagger-cli\\bin\\swagger-cli.js validate ${schemaPath}"
-//        }
-//    }
+    def static validateSwagger(context, schemaPath) {
+        Packaging.createSwaggerSchema(context, schemaPath)
+
+        def schemaFile = new File(schemaPath)
+        if(schemaFile.exists() && schemaFile.length()>500){
+            context.bat "node.exe ${context.env.NODE_MODULES}\\swagger-cli\\bin\\swagger-cli.js validate ${schemaPath}"
+        }
+    }
 
     def static getFailedStageStr(logArray) {
         def log = logArray
