@@ -1,5 +1,7 @@
 package com.test
 
+import groovy.io.FileType
+
 class Utilities {
     private static String DefaultSharedLibName = 'virto-shared-library'
     private static String DefaultAdminDockerPrefix = 'http://localhost'
