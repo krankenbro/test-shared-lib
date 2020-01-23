@@ -228,10 +228,10 @@ class Packaging {
         def sqScannerMsBuildHome = context.tool 'Scanner for MSBuild'
         def fullJobName = Utilities.getRepoName(context)
         def coverageFolder = Utilities.getCoverageFolder(context)
-        def coverageReportType = 'vscoveragexml'
-        if(Utilities.isNetCore(context.projectType)){
-            coverageReportType = 'opencover'
-        }
+        //def coverageReportType = 'vscoveragexml'
+        //if(Utilities.isNetCore(context.projectType)){
+        def coverageReportType = 'opencover'
+        //}
         context.withSonarQubeEnv('VC Sonar Server') {
             def repoName = Utilities.getRepoName(context)
             def prNumber = Utilities.getPullRequestNumber(context)
@@ -241,7 +241,7 @@ class Packaging {
             }
             else{
                 // Due to SONARMSBRU-307 value of sonar.host.url and credentials should be passed on command line
-                context.bat "\"${sqScannerMsBuildHome}\\SonarScanner.MSBuild.exe\" begin /d:\"sonar.branch=${context.env.BRANCH_NAME}\" /n:\"${fullJobName}\" /k:\"${fullJobName}\" /d:sonar.host.url=%SONAR_HOST_URL% /d:sonar.login=%SONAR_AUTH_TOKEN% /d:sonar.cs.${coverageReportType}.reportsPaths=\"${coverageFolder}\\VisualStudio.Unit.coveragexml\""
+                context.bat "\"${sqScannerMsBuildHome}\\SonarScanner.MSBuild.exe\" begin /d:\"sonar.branch=${context.env.BRANCH_NAME}\" /n:\"${fullJobName}\" /k:\"${fullJobName}\" /d:sonar.host.url=%SONAR_HOST_URL% /d:sonar.login=%SONAR_AUTH_TOKEN% /d:sonar.cs.${coverageReportType}.reportsPaths=\"${coverageFolder}/VisualStudio.Unit.coveragexml\""
             }
         }
     }
