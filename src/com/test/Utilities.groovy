@@ -32,7 +32,7 @@ class Utilities {
 
     def static runSharedPS(context, scriptName, args = '')
     {
- 	    context.bat "powershell.exe -File \"${context.env.WORKSPACE}\\..\\workspace@libs\\${DefaultSharedLibName}\\resources\\azure\\${scriptName}\" ${args} -ErrorAction Stop".replaceAll('%', '%%')
+        context.bat script: "powershell.exe -File \"${context.env.WORKSPACE}\\..\\workspace@libs\\${DefaultSharedLibName}\\resources\\azure\\${scriptName}\" ${args} -ErrorAction Stop".replaceAll('%', '%%'), label: scriptName
     }
     def static setSharedLibName(name){
         DefaultSharedLibName = name
@@ -157,7 +157,10 @@ class Utilities {
 
     def static notifyBuildStatus(context, webHook, message='', status = '')
     {
-        def color 
+        def warnings = context.env.WARNINGS ? "WARNINGS:<br/>${context.env.WARNINGS}" : ''
+        if(message != '')
+            message = "${message}<br/>${warnings}"
+        def color
         switch(status) {
             case 'STARTED':
                 color = '428bca'
@@ -183,7 +186,7 @@ class Utilities {
         }
         context.echo "Status is: ${status}; color: ${color}"
         context.office365ConnectorSend message: message, status:status, webhookUrl:webHook, color: color
-    }    
+    }
 
     def static getPlatformPort(context)
     {
@@ -371,7 +374,8 @@ class Utilities {
         }
         return pdbDirs
     }
-    def static getPDBDirsStr(context){
+    def static getPDBDirsStr(context)
+    {
         return getPDBDirs(context).join(';')
     }
     def static isNetCore(projectType){
@@ -391,7 +395,8 @@ class Utilities {
         return swagPaths
     }
 
-    def static validateSwagger(context, schemaPath) {
+    def static validateSwagger(context, schemaPath)
+    {
         Packaging.createSwaggerSchema(context, schemaPath)
 
         def schemaFile = new File(schemaPath)
@@ -400,7 +405,8 @@ class Utilities {
         }
     }
 
-    def static getFailedStageStr(logArray) {
+    def static getFailedStageStr(logArray)
+    {
         def log = logArray
         def startIndex = 30
         def i = 1
@@ -423,12 +429,14 @@ class Utilities {
 			name = 'Not found'
         return name
     }
-    def static getMailBody(context, stageName, stageLog) {
+    def static getMailBody(context, stageName, stageLog)
+    {
         def result = "Failed Stage: ${stageName}\n${context.env.JOB_URL}\n\n\n${stageLog}"
         return result
     }
 
-    def static getPlatformContainer(context){
+    def static getPlatformContainer(context)
+    {
         def tag = context.env.BUILD_TAG.toLowerCase()
         tag = tag.replaceAll("\\.", '')
         def containerId = 'vc-platform-web'
@@ -436,7 +444,8 @@ class Utilities {
     }
 
     @NonCPS
-    def static cleanNugetFolder(context){
+    def static cleanNugetFolder(context)
+    {
         String folderPath = "${context.env.WORKSPACE}\\NuGet"
         new File(folderPath).eachFile (FileType.FILES) { file ->
             context.echo "found file: ${file.name}"
@@ -447,18 +456,21 @@ class Utilities {
         }
     }
 
-    def static getE2EDir(context){
+    def static getE2EDir(context)
+    {
         def tmp = Utilities.getTempFolder(context)
 		return "${tmp}\\e2e"
     }
 
 
-    def static getE2ETests(context, repoUrl, branchName){
+    def static getE2ETests(context, repoUrl, branchName)
+    {
         //context.git credentialsId: 'github', url: 'https://github.com/VirtoCommerce/vc-platform-qg.git'
         context.git credentialsId: 'github', url: repoUrl, branch: branchName
     }
 
-    def static runE2E(context, e2eDir, config){
+    def static runE2E(context, e2eDir, config)
+    {
         context.dir(e2eDir){
             context.deleteDir()
             getE2ETests(context)
@@ -477,11 +489,13 @@ class Utilities {
             }
         }
     }
-    def static generateAllureReport(context){
+    def static generateAllureReport(context)
+    {
         context.allure includeProperties: false, jdk: '', results: [[path: "./../workspace@tmp/output"]]
     }
 
-    def static createInfrastructure(context){
+    def static createInfrastructure(context)
+    {
         if (context.env.BRANCH_NAME == 'bulk-update/dev'){
             Utilities.runSharedPS(context, "vc-CreateInfrastructureBulkUpdateDev.ps1")
         }
@@ -494,18 +508,22 @@ class Utilities {
         
     }
 
-    def static isPullRequest(context){
+    def static isPullRequest(context)
+    {
         return context.env.BRANCH_NAME.startsWith("PR-")
     }
-    def static getPullRequestNumber(context){
+    def static getPullRequestNumber(context)
+    {
         def number = context.env.BRANCH_NAME.replace('PR-', '')
         return number
     }
 
     
     @NonCPS
-    def getUserCause(){
-        for (cause in currentBuild.rawBuild.getCauses()) {
+    def getUserCause()
+    {
+        for (cause in currentBuild.rawBuild.getCauses())
+        {
             if (cause instanceof Cause.UserIdCause) {
                 return cause.getUserName()
             }
@@ -541,15 +559,17 @@ class Utilities {
         ])
     }
 
-    def static cleanPRFolder(context){
+    def static cleanPRFolder(context)
+    {
         if(Utilities.isPullRequest(context)){
             context.cleanWs notFailBuild: true
         }
     }
 
-    def static runBatchScript(context, command){
+    def static runBatchScript(context, command)
+    {
         def outFile = "log${context.env.BUILD_NUMBER}.out"
-        def exitCode = context.bat script: "${command} > ${outFile}", returnStatus:true
+        def exitCode = context.bat script: "${command} > ${outFile}", returnStatus:true, label: command
         def res = [:]
         def fileContent = context.readFile(outFile).trim()
         context.echo fileContent
@@ -557,5 +577,60 @@ class Utilities {
         res["stdout"] = fileContent.split("\n")
         context.bat "del ${outFile} /F /Q"
         return res
+    }
+
+    def static checkLogForWarnings(context)
+    {
+        if(context.env['WARNINGS'] && context.currentBuild.result != 'FAILED'){
+            context.currentBuild.result = 'UNSTABLE'
+            context.echo "WARNINGS:\n${context.env.WARNINGS}"
+        }
+    }
+
+    @NonCPS
+    def static getSubfolders(path)
+    {
+        def  dirsl = []
+        new File(path).eachDir()
+            {
+            dirs ->
+                if (!dirs.getName().startsWith('.')) {
+                    dirsl.add(dirs.getName())
+                }
+            }
+        return dirsl
+    }
+
+    def static checkReleaseVersion(context, version)
+    {
+        if(Utilities.isReleaseBranch(context)){
+            def ghAssetNameStartsWith = "v"
+            def latestAsset = GithubRelease.getLatestGithubRelease(context, Utilities.getOrgName(context), Utilities.getRepoName(context), ghAssetNameStartsWith)
+            def versionOnGithub = latestAsset.tag_name.trim().replace(ghAssetNameStartsWith, '')
+            context.echo "version: ${version}, version on github ${versionOnGithub}"
+            if(version == versionOnGithub){
+                throw new Exception("Version: ${version} already exists on github")
+            }
+        }
+    }
+
+    def static getRepoChanges(context)
+    {
+        String result = context.bat (returnStdout: true, script: "@\"${context.tool 'Git'}\" log -1 --pretty=\"format:\" --name-only", label: "git log -1").trim()
+        def lines = result.split("\r?\n")
+        return lines as String[]
+    }
+    def static areThereCodeChanges(context)
+    {
+        def changes = Utilities.getRepoChanges(context)
+        def result = false
+        for(change in changes)
+        {
+            if(!change.startsWith('docs/') && !change.startsWith('build/') && !change.equalsIgnoreCase('readme.md'))
+            {
+                result = true
+            }
+        }
+        return result
     }
 }

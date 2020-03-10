@@ -225,6 +225,7 @@ class Packaging {
 
     def static startAnalyzer(context)
     {
+        context.echo "Start SonarScanner for MSBuild"
         def sqScannerMsBuildHome = context.tool 'Scanner for MSBuild'
         def fullJobName = Utilities.getRepoName(context)
         def coverageFolder = Utilities.getCoverageFolder(context)
@@ -247,6 +248,7 @@ class Packaging {
     }
 
     def static startSonarJS(context){
+        context.echo "Start SonarScanner"
         def sqScanner = context.tool 'SonarScannerJS'
         def fullJobName = Utilities.getRepoName(context)
         def sources = "./assets"
@@ -269,6 +271,7 @@ class Packaging {
 
     def static endAnalyzer(context)
     {
+        context.echo "Stop SonarScanner for MSBuild"
         def sqScannerMsBuildHome = context.tool 'Scanner for MSBuild'
         def fullJobName = Utilities.getRepoName(context)
         context.withSonarQubeEnv('VC Sonar Server') {
@@ -278,6 +281,7 @@ class Packaging {
 
     def static checkAnalyzerGate(context)
     {
+        context.echo "Waiting for Quality Gate"
         if(Utilities.isPullRequest(context))
         {
             return
@@ -292,6 +296,7 @@ class Packaging {
 
     def static runGulpBuild(context)
     {
+        context.echo "gulp build"
         context.timeout(activity: true, time: 15){
             def packagesDir = Utilities.getArtifactFolder(context)
 
