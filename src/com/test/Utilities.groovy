@@ -129,7 +129,7 @@ class Utilities {
 
     def static getComposeFolderV3(context)
     {
-        def wsFolder = context.pwd()
+        def wsFolder = context.env.WORKSPACE
         def composeDir = "$wsFolder\\..\\workspace@libs\\${DefaultSharedLibName}\\resources"
         composeDir = "$composeDir\\docker_v3"
         return composeDir
