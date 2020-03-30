@@ -37,7 +37,7 @@ class Utilities {
     }
     def static runPS(context, scriptName, args = '')
     {
-        context.powershell script: "${context.env.WORKSPACE}\\..\\workspace@libs\\${DefaultSharedLibName}\\resources\\${scriptName} ${args} -ErrorAction Stop", label: scriptName
+        context.pwsh script: "${context.env.WORKSPACE}\\..\\workspace@libs\\${DefaultSharedLibName}\\resources\\${scriptName} ${args} -ErrorAction Stop", label: scriptName
     }
     def static setSharedLibName(name){
         DefaultSharedLibName = name
