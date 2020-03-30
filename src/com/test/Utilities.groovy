@@ -34,6 +34,10 @@ class Utilities {
     {
         context.bat script: "powershell.exe -File \"${context.env.WORKSPACE}\\..\\workspace@libs\\${DefaultSharedLibName}\\resources\\azure\\${scriptName}\" ${args} -ErrorAction Stop".replaceAll('%', '%%'), label: scriptName
     }
+    def static runPS(context, scriptName, args = '')
+    {
+        context.powershell script: "${context.env.WORKSPACE}@libs\\${DefaultSharedLibName}\\resources\\${scriptName} ${args} -ErrorAction Stop", label: scriptName
+    }
     def static setSharedLibName(name){
         DefaultSharedLibName = name
     }
@@ -121,7 +125,15 @@ class Utilities {
 		    composeDir = "$composeDir\\docker"
 		}
         return composeDir
-    }    
+    }
+
+    def static getComposeFolderV3(context)
+    {
+        def wsFolder = context.pwd()
+        def composeDir = "$wsFolder\\..\\workspace@libs\\${DefaultSharedLibName}\\resources"
+        composeDir = "$composeDir\\docker_v3"
+        return composeDir
+    }
 
     def static getArtifactFolder(context)
     {
