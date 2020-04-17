@@ -33,7 +33,7 @@ class Settings implements Serializable
     }
     def getBranches(String project = '')
     {
-        if(region == '' && _project.trim()){
+        if(project == '' && _project.trim()){
 
             return _settings[_project].keySet() as String[]
         }
