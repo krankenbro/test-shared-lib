@@ -7,8 +7,8 @@ class Utilities {
     private static String DefaultAdminDockerPrefix = 'http://localhost'
     private static String DefaultPlatformCoreDockerPrefix = 'https://localhost'
     private static String DefaultOrgName = 'VirtoCommerce'
-    private static Integer DefaultPlatformPort = 8090
-    private static Integer DefaultStorefrontPort = 8080
+    private static Integer DefaultPlatformPort = 8091
+    private static Integer DefaultStorefrontPort = 8081
     private static Integer DefaultSqlPort = 1434 
 
     def static getOrgName(context){
