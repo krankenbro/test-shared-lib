@@ -5,7 +5,7 @@ import groovy.io.FileType
 class Utilities {
     private static String DefaultSharedLibName = 'virto-shared-library'
     private static String DefaultAdminDockerPrefix = 'http://localhost'
-    private static String DefaultPlatformCoreDockerPrefix = 'https://localhost'
+    private static String DefaultPlatformCoreDockerPrefix = 'http://localhost'
     private static String DefaultOrgName = 'VirtoCommerce'
     private static Integer DefaultPlatformPort = 8091
     private static Integer DefaultStorefrontPort = 8081
