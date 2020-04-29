@@ -662,6 +662,6 @@ class Utilities {
     {
         def changes = context.currentBuild.changeSets
         context.echo changes.getClass() as String
-        return changes.last().msg
+        return changes.last().last().msg
     }
 }
