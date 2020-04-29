@@ -661,7 +661,7 @@ class Utilities {
     def static getChangelog(context)
     {
         def changes = context.currentBuild.changeSets
-        context.echo changes.getClass()
+        context.echo changes.getClass() as String
         return changes.getItems().latest().msg
     }
 }
