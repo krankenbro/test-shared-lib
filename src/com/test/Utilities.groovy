@@ -657,4 +657,11 @@ class Utilities {
         }
         return result
     }
+    @NonCPS
+    def static getChangelog(context)
+    {
+        def changes = context.currentBuild.changeSets
+        context.echo changes.getClass()
+        return changes.getItems().latest().msg
+    }
 }
