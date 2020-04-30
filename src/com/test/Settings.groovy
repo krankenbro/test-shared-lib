@@ -10,7 +10,7 @@ class Settings implements Serializable
     Settings(String json){
         _settings = new JsonSlurperClassic().parseText(json)
     }
-    String getAt(String item)
+    def getAt(String item)
     {
         if(_project == null)
             throw new Exception("Settings error: Project name is not set")
@@ -20,7 +20,7 @@ class Settings implements Serializable
         {
             return ''
         }
-        def result = _settings[_project][_branch][item] as String
+        def result = _settings[_project][_branch][item]
         return result
     }
     def setProject(String project)
