@@ -33,6 +33,7 @@ class GithubRelease{
         throw new Exception("No github releases found")
     }
 
+    @NonCPS
     def static GithubRelease getLatestGithubReleaseRegexp(context, repoOrg, repoName, regexp, prerelease = false)
     {
         def releasesUrl = "https://api.github.com/repos/${repoOrg}/${repoName}/releases"
