@@ -42,7 +42,7 @@ class GithubRelease{
         def releases = new groovy.json.JsonSlurperClassic().parseText(content)
         for(release in releases){
             context.echo release.tag_name
-            if(isMatch(release.tag_name, regexp) && release.prerelease == prerelease){
+            if(isMatch(release.name, regexp) && release.prerelease == prerelease){
                 context.echo "Release id: ${release.id}"
                 return new GithubRelease(release)
             }
