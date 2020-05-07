@@ -33,7 +33,7 @@ class GithubRelease{
         throw new Exception("No github releases found")
     }
 
-    @NonCPS
+
     def static GithubRelease getLatestGithubReleaseRegexp(context, repoOrg, repoName, regexp, prerelease = false)
     {
         def releasesUrl = "https://api.github.com/repos/${repoOrg}/${repoName}/releases"
@@ -41,12 +41,18 @@ class GithubRelease{
         def content = response.content
         def releases = new groovy.json.JsonSlurperClassic().parseText(content)
         for(release in releases){
-            if(release.tag_name ==~ regexp && release.prerelease == prerelease){
+            if(isMatch(release.tag_name, regexp) && release.prerelease == prerelease){
                 context.echo "Release id: ${release.id}"
                 return new GithubRelease(release)
             }
         }
         throw new Exception("No github releases found")
+    }
+
+    @NonCPS
+    def static boolean isMatch(text, pattern)
+    {
+        return text ==~ pattern
     }
 
     def static downloadGithubRelease(context, url, outFile){
