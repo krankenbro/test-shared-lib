@@ -32,6 +32,22 @@ class GithubRelease{
         }
         throw new Exception("No github releases found")
     }
+
+    def static GithubRelease getLatestGithubReleaseRegexp(context, repoOrg, repoName, regexp, prerelease = false)
+    {
+        def releasesUrl = "https://api.github.com/repos/${repoOrg}/${repoName}/releases"
+        def response = context.httpRequest authentication:"vc-ci", httpMode:'GET', responseHandle: 'STRING', url:releasesUrl
+        def content = response.content
+        def releases = new groovy.json.JsonSlurperClassic().parseText(content)
+        for(release in releases){
+            if(release.tag_name ==~ regexp && release.prerelease == prerelease){
+                context.echo "Release id: ${release.id}"
+                return new GithubRelease(release)
+            }
+        }
+        throw new Exception("No github releases found")
+    }
+
     def static downloadGithubRelease(context, url, outFile){
         context.httpRequest authentication:"vc-ci", acceptType: 'APPLICATION_OCTETSTREAM', httpMode: 'GET', outputFile: outFile, responseHandle: 'NONE', url: url
     }
