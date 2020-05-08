@@ -684,11 +684,13 @@ class Utilities {
         def jiraTasksRegex = /(?m)^#*[A-Z]{2,5}-\d{2,4}:{0,1}\s*/
         def mergeRegex = /(?m)^Merge.*\n/
         def result = text.replaceAll(jiraTasksRegex, "").replaceAll(mergeRegex, "")
+        context.echo "regex result: ${result}"
         return result
     }
     def getReleaseNotesFromCommits(context, since)
     {
         def gitOut = context.pwsh(script: "git log --pretty=format:\"%s\" --since=\"${since}\"", returnStdout: true).trim()
+        context.echo "git output: ${gitOut}"
         return cleanReleaseNotes(context, gitOut).replaceAll("\n", "<br />")
     }
 }
