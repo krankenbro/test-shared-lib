@@ -688,6 +688,6 @@ class Utilities {
     def getReleaseNotesFromCommits(context, since)
     {
         def gitOut = context.pwsh(script: "git log --pretty=format:\"%s\" --since=\"${since}\"", returnStdout: true).trim()
-        return cleanReleaseNotes(context, gitOut)
+        return cleanReleaseNotes(context, gitOut).replaceAll("\n", "<br />")
     }
 }
