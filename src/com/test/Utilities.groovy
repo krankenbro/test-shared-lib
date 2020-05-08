@@ -678,6 +678,7 @@ class Utilities {
             }
         }
     }
+    @NonCPS
     def cleanReleaseNotes(context, text)
     {
         def jiraTasksRegex = /(?m)^#*[A-Z]{2,5}-\d{2,4}:{0,1}\s*/
