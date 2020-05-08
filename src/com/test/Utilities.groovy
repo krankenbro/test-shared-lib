@@ -689,8 +689,7 @@ class Utilities {
     }
     def static getReleaseNotesFromCommits(context, since)
     {
-        context.echo "getReleaseNotesFromCommits ${context.getClass()}"
-        def gitOut = context.bat(script: "@git log --pretty=format:\"%s\" --since=\"${since}\"", returnStdout: true).trim()
+        def gitOut = context.pwsh(script: "@git log --pretty=format:\"%s\" --since=\"${since}\"", returnStdout: true).trim()
         context.echo "git output: ${gitOut}"
         return cleanReleaseNotes(context, gitOut).replaceAll("\n", "<br />")
     }
