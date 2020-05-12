@@ -682,7 +682,7 @@ class Utilities {
     def static cleanReleaseNotes(context, text)
     {
         def jiraTasksRegex = /(?m)^#*[A-Z]{2,5}-\d{2,4}:{0,1}\s*/
-        def mergeRegex = /(?m)^Merge.*\n/
+        def mergeRegex = /(?m)^Merge.*$/
         def result = text.replaceAll(jiraTasksRegex, "").replaceAll(mergeRegex, "")
         return result
     }
