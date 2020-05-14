@@ -459,6 +459,10 @@ class Utilities {
     {
         def tag = context.env.BUILD_TAG.toLowerCase()
         tag = tag.replaceAll("\\.", '').replaceAll('%', '')
+        if(context.isUnix())
+        {
+            tag = tag.replaceAll("-", "")
+        }
         def containerId = 'vc-platform-web'
         return "${tag}_${containerId}_1"
     }
@@ -466,6 +470,10 @@ class Utilities {
         def tag = context.env.BUILD_TAG.toLowerCase()
         tag = tag.replaceAll("%", '')
         tag = tag.replaceAll("\\.", '')
+        if(context.isUnix())
+        {
+            tag = tag.replaceAll("-", "")
+        }
         def containerId = 'vc-storefront-web'
         return "${tag}_${containerId}_1"
     }
