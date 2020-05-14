@@ -37,7 +37,10 @@ class Utilities {
     }
     def static runPS(context, scriptName, args = '')
     {
-        context.pwsh script: "${context.env.WORKSPACE}/../workspace@libs/${DefaultSharedLibName}/resources/${scriptName} ${args} -ErrorAction Stop", label: scriptName
+        def scriptRoot = "${context.env.WORKSPACE}/../workspace@libs/${DefaultSharedLibName}/resources/"
+        if(context.env.NODE_NAME != 'master')
+            scriptRoot = "${context.env.WORKSPACE}/resources/"
+        context.pwsh script: "${scriptRoot}${scriptName} ${args} -ErrorAction Stop", label: scriptName
     }
     def static setSharedLibName(name){
         DefaultSharedLibName = name
