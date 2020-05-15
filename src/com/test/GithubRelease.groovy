@@ -34,7 +34,7 @@ class GithubRelease{
     }
 
 
-    def static GithubRelease getLatestGithubReleaseRegexp(context, repoOrg, repoName, regexp = /^[013-9]\.\d{1,3}\.\d{1,3}[\s-]{0,1}[a-zA-Z]{2}\d+/)
+    def static GithubRelease getLatestGithubReleaseRegexp(context, repoOrg, repoName, regexp = /^[013-9]\.\d{1,3}\.\d{1,3}[\s-]{0,1}([a-zA-Z]{2}\d+){0,1}/)
     {
         def releasesUrl = "https://api.github.com/repos/${repoOrg}/${repoName}/releases"
         def response = context.httpRequest authentication:"vc-ci", httpMode:'GET', responseHandle: 'STRING', url:releasesUrl
