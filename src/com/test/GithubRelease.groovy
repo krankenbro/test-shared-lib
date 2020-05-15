@@ -34,14 +34,14 @@ class GithubRelease{
     }
 
 
-    def static GithubRelease getLatestGithubReleaseRegexp(context, repoOrg, repoName, regexp, prerelease = false)
+    def static GithubRelease getLatestGithubReleaseRegexp(context, repoOrg, repoName, regexp = /^[013-9]\.\d{1,3}\.\d{1,3}[\s-]{0,1}[a-zA-Z]{2}\d+/)
     {
         def releasesUrl = "https://api.github.com/repos/${repoOrg}/${repoName}/releases"
         def response = context.httpRequest authentication:"vc-ci", httpMode:'GET', responseHandle: 'STRING', url:releasesUrl
         def content = response.content
         def releases = new groovy.json.JsonSlurperClassic().parseText(content)
         for(release in releases){
-            if(isMatch(release.name, regexp) && release.prerelease == prerelease){
+            if(isMatch(release.name, regexp)){
                 context.echo "Release id: ${release.id}"
                 return new GithubRelease(release)
             }
