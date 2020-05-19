@@ -227,7 +227,7 @@ class Packaging {
     {
         context.echo "Start SonarScanner for MSBuild"
         def sqScannerMsBuildHome = context.tool 'Scanner for MSBuild'
-        def fullJobName = Utilities.getRepoName(context)
+        def fullJobName = Utilities.getRepoName(context).replaceAll("/", "_")
         def coverageFolder = Utilities.getCoverageFolder(context)
         def coverageReportType = 'opencover'
         def scannerPath = "\"${sqScannerMsBuildHome}\\SonarScanner.MSBuild.exe\""
