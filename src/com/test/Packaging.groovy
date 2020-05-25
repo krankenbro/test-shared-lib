@@ -95,7 +95,7 @@ class Packaging {
         //def tag = context.env.BUILD_TAG.replace("-", "").toLowerCase()
         def tag = context.env.BUILD_TAG.toLowerCase()
         def containerName = "${tag}_${containerId}_1"
-        containerName = containerName.replaceAll("\\.", '')
+        containerName = containerName.replaceAll("\\.", '').replaceAll('%', '')
         context.echo "Checking ${containerName} state ..."
         String result = context.bat(returnStdout: true, script: "docker inspect -f {{.State.Running}} ${containerName}").trim()
 
