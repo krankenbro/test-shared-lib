@@ -702,4 +702,11 @@ class Utilities {
         def gitOut = context.pwsh(script: "git log --pretty=format:\"%s (%h)\" --since=\"${since}\"", returnStdout: true).trim()
         return cleanReleaseNotes(context, gitOut).replaceAll("\r", "").replaceAll("\n", "<br />").replaceAll("\"", "").replaceAll("<br /><br />", "<br />")
     }
+
+    def static getCommitNumber(context)
+    {
+        def gitversionOutput = context.powershell (script: "dotnet gitversion", returnStdout: true, label: 'Gitversion', encoding: 'UTF-8').trim()
+        def gitversionJson = new groovy.json.JsonSlurperClassic().parseText(gitversionOutput)
+        return gitversionJson['CommitsSinceVersionSource']
+    }
 }
