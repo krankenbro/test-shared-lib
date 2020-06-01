@@ -709,4 +709,9 @@ class Utilities {
         def gitversionJson = new groovy.json.JsonSlurperClassic().parseText(gitversionOutput)
         return gitversionJson['CommitsSinceVersionSource']
     }
+    def static getCommitHash(context)
+    {
+        def result = context.pwsh(script: "git log --pretty=format:\"%h\" -1", returnStdout: true).trim()
+        return result
+    }
 }
