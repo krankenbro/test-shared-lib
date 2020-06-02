@@ -711,6 +711,10 @@ class Utilities {
     }
     def static getCommitHash(context)
     {
+        if(Utilities.isPullRequest(context))
+        {
+            return null
+        }
         def result = context.pwsh(script: "git log --pretty=format:\"%h\" -1", returnStdout: true).trim()
         return result
     }
