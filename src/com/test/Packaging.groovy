@@ -471,7 +471,7 @@ class Packaging {
         }
         context.dir(nugetFolder){
             for(csproj in csprojs){
-                context.bat "${context.env.NUGET}\\nuget pack \"${context.env.WORKSPACE}\\${csproj.path}\" -IncludeReferencedProjects -Symbols -Properties Configuration=Release"
+                context.bat "${context.env.NUGET}\\nuget pack \"${currentFolder}\\${csproj.path}\" -IncludeReferencedProjects -Symbols -Properties Configuration=Release"
             }
             def nugets = context.findFiles(glob: "**\\*.nupkg")
             for(nuget in nugets){
