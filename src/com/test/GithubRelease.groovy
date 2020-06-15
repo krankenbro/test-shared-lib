@@ -49,14 +49,14 @@ class GithubRelease{
         throw new Exception("No github releases found")
     }
 
-    def static GithubRelease getLatestGithubReleaseV3(context, repoOrg, repoName)
+    def static GithubRelease getLatestGithubReleaseV3(context, repoOrg, repoName, prerelease = true)
     {
         def releasesUrl = "https://api.github.com/repos/${repoOrg}/${repoName}/releases"
         def response = context.httpRequest authentication:"vc-ci", httpMode:'GET', responseHandle: 'STRING', url:releasesUrl
         def content = response.content
         def releases = new groovy.json.JsonSlurperClassic().parseText(content)
         for(release in releases){
-            if(!release.name.startsWith('v2')){
+            if(!release.name.startsWith('v2') && release.prerelease == prerelease){
                 context.echo "Release id: ${release.id}"
                 return new GithubRelease(release)
             }
