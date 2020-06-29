@@ -705,9 +705,8 @@ class Utilities {
 
     def static getCommitNumber(context)
     {
-        def gitversionOutput = context.powershell (script: "dotnet gitversion", returnStdout: true, label: 'Gitversion', encoding: 'UTF-8').trim()
-        def gitversionJson = new groovy.json.JsonSlurperClassic().parseText(gitversionOutput)
-        return gitversionJson['CommitsSinceVersionSource']
+        def result = context.pwsh(script: "git rev-list --count ${context.env.BRANCH_NAME}", returnStdout: true).trim()
+        return result
     }
     def static getCommitHash(context)
     {
