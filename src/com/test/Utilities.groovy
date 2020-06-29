@@ -706,6 +706,10 @@ class Utilities {
     def static getCommitNumber(context)
     {
         def result = context.pwsh(script: "git rev-list --count ${context.env.BRANCH_NAME}", returnStdout: true).trim()
+        if(!result.isNumber())
+        {
+            throw new Exception("Wrong commit number!")
+        }
         return result
     }
     def static getCommitHash(context)
