@@ -20,14 +20,16 @@ class GithubRelease{
     }
 
     def static GithubRelease getLatestGithubRelease(context, repoOrg, repoName, tagContains='', prerelease = false){
-        def releasesUrl = "https://api.github.com/repos/${repoOrg}/${repoName}/releases"
-        def response = context.httpRequest authentication:"vc-ci", httpMode:'GET', responseHandle: 'STRING', url:releasesUrl
-        def content = response.content
-        def releases = new groovy.json.JsonSlurperClassic().parseText(content)
-        for(release in releases){
-            if(release.tag_name.contains(tagContains) && release.prerelease == prerelease){
-                context.echo "Release id: ${release.id}"
-                return new GithubRelease(release)
+        for(def i=1; i < 6; i++) {
+            def releasesUrl = "https://api.github.com/repos/${repoOrg}/${repoName}/releases?page=${i}"
+            def response = context.httpRequest authentication: "vc-ci", httpMode: 'GET', responseHandle: 'STRING', url: releasesUrl
+            def content = response.content
+            def releases = new groovy.json.JsonSlurperClassic().parseText(content)
+            for (release in releases) {
+                if (release.tag_name.contains(tagContains) && release.prerelease == prerelease) {
+                    context.echo "Release id: ${release.id}"
+                    return new GithubRelease(release)
+                }
             }
         }
         throw new Exception("No github releases found")
