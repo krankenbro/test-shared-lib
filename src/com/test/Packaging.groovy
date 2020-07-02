@@ -236,19 +236,15 @@ class Packaging {
         {
             scannerPath = "dotnet sonarscanner"
         }
-        // if(Utilities.isNetCore(context.projectType)){
-        //     coverageReportType = 'opencover'
-        // }
-        context.withSonarQubeEnv('VC Sonar Server') {
+        context.withSonarQubeEnv('SonarCloud') {
             def repoName = Utilities.getRepoName(context)
             def prNumber = Utilities.getPullRequestNumber(context)
             def orgName = Utilities.getOrgName(context)
             if(Utilities.isPullRequest(context)){
-                context.bat "${scannerPath} begin /d:\"sonar.branch=${context.env.BRANCH_NAME}\" /n:\"${fullJobName}\" /k:\"${fullJobName}\" /d:sonar.verbose=true /d:sonar.github.oauth=${context.env.GITHUB_TOKEN} /d:sonar.analysis.mode=preview /d:sonar.github.pullRequest=\"${prNumber}\" /d:sonar.github.repository=${orgName}/${repoName} /d:sonar.host.url=%SONAR_HOST_URL% /d:sonar.login=%SONAR_AUTH_TOKEN% /d:sonar.cs.${coverageReportType}.reportsPaths=\"${coverageFolder}\\VisualStudio.Unit.coveragexml\""
+                context.bat "${scannerPath} begin /o:\"virto-commerce\" /d:\"sonar.branch=${context.env.BRANCH_NAME}\" /n:\"${fullJobName}\" /k:\"${fullJobName}\" /d:sonar.verbose=true /d:sonar.pullrequest.base=\"${context.env.CHANGE_TARGET}\" /d:sonar.pullrequest.branch=\"${context.env.CHANGE_BRANCH}\" /d:sonar.pullrequest.key=\"${context.env.CHANGE_ID}\" /d:sonar.host.url=%SONAR_HOST_URL% /d:sonar.login=%SONAR_AUTH_TOKEN% /d:sonar.cs.${coverageReportType}.reportsPaths=\"${coverageFolder}\\VisualStudio.Unit.coveragexml\""
             }
             else{
-                // Due to SONARMSBRU-307 value of sonar.host.url and credentials should be passed on command line
-                context.bat "${scannerPath} begin /d:\"sonar.branch=${context.env.BRANCH_NAME}\" /n:\"${fullJobName}\" /k:\"${fullJobName}\" /d:sonar.verbose=true /d:sonar.host.url=%SONAR_HOST_URL% /d:sonar.login=%SONAR_AUTH_TOKEN% /d:sonar.cs.${coverageReportType}.reportsPaths=\"${coverageFolder}\\VisualStudio.Unit.coveragexml\""
+                context.bat "${scannerPath} begin /o:\"virto-commerce\" /d:\"sonar.branch=${context.env.BRANCH_NAME}\" /n:\"${fullJobName}\" /k:\"${fullJobName}\" /d:sonar.verbose=true /d:sonar.host.url=%SONAR_HOST_URL% /d:sonar.login=%SONAR_AUTH_TOKEN% /d:sonar.cs.${coverageReportType}.reportsPaths=\"${coverageFolder}\\VisualStudio.Unit.coveragexml\""
             }
         }
     }
@@ -275,13 +271,18 @@ class Packaging {
         }
     }
 
-    def static endAnalyzer(context)
+    def static endAnalyzer(context, dotnet = false)
     {
         context.echo "Stop SonarScanner for MSBuild"
         def sqScannerMsBuildHome = context.tool 'Scanner for MSBuild'
         def fullJobName = Utilities.getRepoName(context)
-        context.withSonarQubeEnv('VC Sonar Server') {
-            context.bat "\"${sqScannerMsBuildHome}\\SonarScanner.MSBuild.exe\" end /d:sonar.login=%SONAR_AUTH_TOKEN%"
+        def scannerPath = "\"${sqScannerMsBuildHome}\\SonarScanner.MSBuild.exe\""
+        if(dotnet)
+        {
+            scannerPath = "dotnet sonarscanner"
+        }
+        context.withSonarQubeEnv('SonarCloud') {
+            context.bat "${scannerPath} end /d:sonar.login=%SONAR_AUTH_TOKEN%"
         }
     }
 
