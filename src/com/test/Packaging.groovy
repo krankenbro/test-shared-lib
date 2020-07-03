@@ -228,7 +228,7 @@ class Packaging {
     {
         context.echo "Start SonarScanner for MSBuild"
         def sqScannerMsBuildHome = context.tool 'Scanner for MSBuild'
-        def fullJobName = Utilities.getRepoName(context)
+        def fullJobName = "VirtoCommerce_${Utilities.getRepoName(context)}"
         def coverageFolder = Utilities.getCoverageFolder(context)
         def coverageReportType = 'opencover'
         def scannerPath = "\"${sqScannerMsBuildHome}\\SonarScanner.MSBuild.exe\""
@@ -241,10 +241,10 @@ class Packaging {
             def prNumber = Utilities.getPullRequestNumber(context)
             def orgName = Utilities.getOrgName(context)
             if(Utilities.isPullRequest(context)){
-                context.bat "${scannerPath} begin /o:\"virto-commerce\" /d:\"sonar.branch=${context.env.BRANCH_NAME}\" /n:\"${fullJobName}\" /k:\"${fullJobName}\" /d:sonar.exclusions=**/.git/** /d:sonar.verbose=true /d:sonar.pullrequest.base=\"${context.env.CHANGE_TARGET}\" /d:sonar.pullrequest.branch=\"${context.env.CHANGE_BRANCH}\" /d:sonar.pullrequest.key=\"${context.env.CHANGE_ID}\" /d:sonar.host.url=%SONAR_HOST_URL% /d:sonar.login=%SONAR_AUTH_TOKEN% /d:sonar.cs.${coverageReportType}.reportsPaths=\"${coverageFolder}\\VisualStudio.Unit.coveragexml\""
+                context.bat "${scannerPath} begin /o:\"virto-commerce\" /d:\"sonar.branch=${context.env.BRANCH_NAME}\" /k:\"${fullJobName}\" /d:sonar.exclusions=**/.git/** /d:sonar.verbose=true /d:sonar.pullrequest.base=\"${context.env.CHANGE_TARGET}\" /d:sonar.pullrequest.branch=\"${context.env.CHANGE_BRANCH}\" /d:sonar.pullrequest.key=\"${context.env.CHANGE_ID}\" /d:sonar.host.url=%SONAR_HOST_URL% /d:sonar.login=%SONAR_AUTH_TOKEN% /d:sonar.cs.${coverageReportType}.reportsPaths=\"${coverageFolder}\\VisualStudio.Unit.coveragexml\""
             }
             else{
-                context.bat "${scannerPath} begin /o:\"virto-commerce\" /d:\"sonar.branch=${context.env.BRANCH_NAME}\" /n:\"${fullJobName}\" /k:\"${fullJobName}\" /d:sonar.exclusions=**/.git/** /d:sonar.verbose=true /d:sonar.host.url=%SONAR_HOST_URL% /d:sonar.login=%SONAR_AUTH_TOKEN% /d:sonar.cs.${coverageReportType}.reportsPaths=\"${coverageFolder}\\VisualStudio.Unit.coveragexml\""
+                context.bat "${scannerPath} begin /o:\"virto-commerce\" /d:\"sonar.branch=${context.env.BRANCH_NAME}\" /k:\"${fullJobName}\" /d:sonar.exclusions=**/.git/** /d:sonar.verbose=true /d:sonar.host.url=%SONAR_HOST_URL% /d:sonar.login=%SONAR_AUTH_TOKEN% /d:sonar.cs.${coverageReportType}.reportsPaths=\"${coverageFolder}\\VisualStudio.Unit.coveragexml\""
             }
         }
     }
