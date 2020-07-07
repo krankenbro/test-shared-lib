@@ -252,7 +252,7 @@ class Packaging {
     def static startSonarJS(context){
         context.echo "Start SonarScanner"
         def sqScanner = context.tool 'SonarScannerJS'
-        def fullJobName = ${Utilities.getRepoName(context)}
+        def fullJobName = Utilities.getRepoName(context)
         def sources = "./assets"
         def repoName = Utilities.getRepoName(context)
         def prNumber = Utilities.getPullRequestNumber(context)
