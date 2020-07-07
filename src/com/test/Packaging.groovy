@@ -262,7 +262,7 @@ class Packaging {
         context.withSonarQubeEnv('SonarCloud') {
             context.timeout(activity: true, time: 15){
                 if(Utilities.isPullRequest(context)){
-                    context.bat "\"${sqScanner}\\bin\\sonar-scanner.bat\" scan -Dsonar.projectKey=${projectKey} -Dsonar.sources=${sources} -Dsonar.branch=${context.env.BRANCH_NAME} -Dsonar.projectName=\"${fullJobName}\" -Dsonar.host.url=%SONAR_HOST_URL% -Dsonar.login=%SONAR_AUTH_TOKEN% -Dsonar.github.oauth=${context.env.GITHUB_TOKEN} -Dsonar.analysis.mode=preview -Dsonar.github.pullRequest=\"${prNumber}\" -Dsonar.github.repository=${orgName}/${repoName}"
+                    context.bat "\"${sqScanner}\\bin\\sonar-scanner.bat\" scan -Dsonar.organization=virto-commerce -Dsonar.projectKey=${projectKey} -Dsonar.sources=${sources} -D\"sonar.host.url=https://sonarcloud.io\" -Dsonar.branch.name=${context.env.BRANCH_NAME} -Dsonar.projectName=\"${fullJobName}\" -Dsonar.host.url=%SONAR_HOST_URL% -Dsonar.login=%SONAR_AUTH_TOKEN% -Dsonar.pullrequest.base=\"${context.env.CHANGE_TARGET}\" -Dsonar.pullrequest.branch=\"${context.env.CHANGE_BRANCH}\" -Dsonar.pullrequest.key=\"${context.env.CHANGE_ID}\""
                 }
                 else{
                     context.bat "\"${sqScanner}\\bin\\sonar-scanner.bat\" scan -Dsonar.organization=virto-commerce -Dsonar.projectKey=${projectKey} -Dsonar.sources=${sources} -D\"sonar.host.url=https://sonarcloud.io\" -Dsonar.branch.name=${context.env.BRANCH_NAME} -Dsonar.projectName=\"${fullJobName}\" -Dsonar.host.url=%SONAR_HOST_URL% -Dsonar.login=%SONAR_AUTH_TOKEN%"
