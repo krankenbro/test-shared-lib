@@ -252,12 +252,12 @@ class Packaging {
     def static startSonarJS(context){
         context.echo "Start SonarScanner"
         def sqScanner = context.tool 'SonarScannerJS'
-        def fullJobName = "VirtoCommerce_${Utilities.getRepoName(context)}"
+        def fullJobName = ${Utilities.getRepoName(context)}
         def sources = "./assets"
         def repoName = Utilities.getRepoName(context)
         def prNumber = Utilities.getPullRequestNumber(context)
         def orgName = Utilities.getOrgName(context)
-        def projectKey = "${fullJobName}_${context.env.BRANCH_NAME}".replaceAll('/', '_')
+        def projectKey = "VirtoCommerce_${fullJobName}"
 
         context.withSonarQubeEnv('SonarCloud') {
             context.timeout(activity: true, time: 15){
@@ -265,7 +265,7 @@ class Packaging {
                     context.bat "\"${sqScanner}\\bin\\sonar-scanner.bat\" scan -Dsonar.projectKey=${projectKey} -Dsonar.sources=${sources} -Dsonar.branch=${context.env.BRANCH_NAME} -Dsonar.projectName=\"${fullJobName}\" -Dsonar.host.url=%SONAR_HOST_URL% -Dsonar.login=%SONAR_AUTH_TOKEN% -Dsonar.github.oauth=${context.env.GITHUB_TOKEN} -Dsonar.analysis.mode=preview -Dsonar.github.pullRequest=\"${prNumber}\" -Dsonar.github.repository=${orgName}/${repoName}"
                 }
                 else{
-                    context.bat "\"${sqScanner}\\bin\\sonar-scanner.bat\" scan -Dsonar.organization=virto-commerce -Dsonar.projectKey=${fullJobName} -Dsonar.sources=${sources} -D\"sonar.host.url=https://sonarcloud.io\" -Dsonar.branch=${context.env.BRANCH_NAME} -Dsonar.host.url=%SONAR_HOST_URL% -Dsonar.login=%SONAR_AUTH_TOKEN%"
+                    context.bat "\"${sqScanner}\\bin\\sonar-scanner.bat\" scan -Dsonar.organization=virto-commerce -Dsonar.projectKey=${projectKey} -Dsonar.sources=${sources} -D\"sonar.host.url=https://sonarcloud.io\" -Dsonar.branch=${context.env.BRANCH_NAME} -Dsonar.projectName=\"${fullJobName}\" -Dsonar.host.url=%SONAR_HOST_URL% -Dsonar.login=%SONAR_AUTH_TOKEN%"
                 }
             }
         }
