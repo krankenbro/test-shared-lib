@@ -7,7 +7,7 @@ class Utilities {
     private static String DefaultAdminDockerPrefix = 'http://localhost'
     private static String DefaultPlatformCoreDockerPrefix = 'http://localhost'
     private static String DefaultOrgName = 'VirtoCommerce'
-    private static Integer DefaultPlatformPort = 8091
+    private static Integer DefaultPlatformPort = 8101
     private static Integer DefaultStorefrontPort = 8081
     private static Integer DefaultSqlPort = 1434 
 
@@ -251,7 +251,7 @@ class Utilities {
         {
             currentOrder = tempCurrentOrder.toInteger() + 1
             
-            if(currentOrder >= 10) // reset, we can't have more than 10 builders at the same time
+            if(currentOrder >= 20) // reset, we can't have more than 10 builders at the same time
             {
                 currentOrder = 0
             }
